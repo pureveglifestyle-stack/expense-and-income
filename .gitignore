@@ -1,0 +1,9 @@
+# never commit original statements, raw statement text or passwords
+*.pdf
+*.PDF
+*.txt
+*.tgz
+*password*
+work/xl/pdf/
+work/xl/lo/
+work/xl/*.xlsx
