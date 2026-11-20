@@ -97,7 +97,7 @@ pie.dataLabels=DataLabelList(); pie.dataLabels.showPercent=True; pie.dataLabels.
 from openpyxl.chart.series import DataPoint
 for idx,(lab,key,_) in enumerate(comp):
     pt=DataPoint(idx=idx); pt.graphicalProperties.solidFill=COL[key]; pie.series[0].dPt.append(pt)
-pie.height=7.5; pie.width=11
+pie.height=5.2; pie.width=11
 ws.add_chart(pie,"F8")
 # monthly table
 ws["B18"]="MONTH BY MONTH"; ws["B18"].font=Font(bold=True,size=12,color=NAVY)
@@ -130,7 +130,11 @@ bar.set_categories(Reference(ws,min_col=2,min_row=20,max_row=lm))
 for s,key in zip(bar.series,mcols): s.graphicalProperties.solidFill=COL[key]; s.graphicalProperties.line.noFill=True
 bar.y_axis.numFmt="#,##0"; bar.y_axis.majorGridlines=None; bar.x_axis.number_format="mmm yy"
 bar.height=8; bar.width=24; bar.legend.position="b"
-ws.add_chart(bar,f"B{lm+2}")
+t=lm+1; ws[f"B{t}"]="TOTAL"
+for c in "CDEFGH":
+    ws[f"{c}{t}"]=f"=SUM({c}20:{c}{lm})"; ws[f"{c}{t}"].number_format='#,##0;-#,##0;"–"'
+for c in "BCDEFGH": ws[f"{c}{t}"].font=Font(bold=True,color=WHITE); ws[f"{c}{t}"].fill=fill(NAVY)
+ws.add_chart(bar,f"B{lm+3}")
 # detail table
 ws[f"B{D0-1}"]="EVERY PAYMENT RECEIVED"; ws[f"B{D0-1}"].font=Font(bold=True,size=12,color=NAVY)
 hdr(D0,"BCDEFGHI",["Date","Company","Amount (AED)","Description","Paid into","Category","Original","Currency"])

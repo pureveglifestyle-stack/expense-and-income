@@ -61,7 +61,9 @@ ch=BarChart(); ch.type="col"; ch.title="Sent to India per month (AED)"
 ch.add_data(Reference(ws,min_col=4,min_row=ms+1,max_row=mle),titles_from_data=True)
 ch.set_categories(Reference(ws,min_col=2,min_row=ms+2,max_row=mle))
 ch.series[0].graphicalProperties.solidFill="2F6DB5"; ch.legend=None; ch.y_axis.majorGridlines=None; ch.y_axis.numFmt="#,##0"; ch.x_axis.number_format="mmm yy"
-ch.height=8; ch.width=18; ws.add_chart(ch,f"B{mle+2}")
+t=mle+1; ws[f"B{t}"]="TOTAL"; ws[f"C{t}"]=f"=SUM(C{ms+2}:C{mle})"; ws[f"D{t}"]=f"=SUM(D{ms+2}:D{mle})"; ws[f"D{t}"].number_format="#,##0.00"
+for c in "BCD": ws[f"{c}{t}"].font=Font(bold=True,color=WHITE); ws[f"{c}{t}"].fill=fill(NAVY)
+ch.height=8; ch.width=18; ws.add_chart(ch,f"B{mle+3}")
 ws.freeze_panes="A6"
 # ---------------- CATEGORY ----------------
 wc=wb.create_sheet("4. Spending by category"); ws=wc
@@ -134,8 +136,14 @@ for k,(cn,head,tot,s0,s1,flag) in enumerate(anchors):
     if cn.startswith("WORK"):
         for c in "BCDEF": ws[f"{c}{ir}"].fill=fill("EEF8F1")
 it=idx0+len(anchors)
-ws[f"B{it}"]="TOTAL"; ws[f"E{it}"]=f"=SUM(E{idx0}:E{it-1})"; ws[f"E{it}"].number_format="#,##0.00"
-for c in "BCDEF": ws[f"{c}{it}"].font=Font(bold=True,color=WHITE); ws[f"{c}{it}"].fill=fill("B8650F")
+ws[f"B{it}"]="Total of all categories above"; ws[f"E{it}"]=f"=SUM(E{idx0}:E{it-1})"
+ws[f"B{it+1}"]="+ Sent to India (page 3)"; ws[f"B{it+1}"].hyperlink="#'3. India transfers'!B1"; ws[f"D{it+1}"]=f"='3. India transfers'!D4"; ws[f"E{it+1}"]="='3. India transfers'!B4"
+ws[f"B{it+2}"]="TOTAL MONEY OUT"; ws[f"D{it+2}"]=f"=SUM(D{idx0}:D{it+1})"; ws[f"E{it+2}"]=f"=E{it}+E{it+1}"
+for rr in (it,it+1,it+2):
+    ws.merge_cells(f"B{rr}:C{rr}"); ws[f"E{rr}"].number_format="#,##0.00"
+    for c in "BCDEF": ws[f"{c}{rr}"].border=Border(bottom=thin); ws[f"{c}{rr}"].font=Font(bold=True)
+ws[f"B{it+1}"].font=Font(bold=True,color="1F5FAD",underline="single")
+for c in "BCDEF": ws[f"{c}{it+2}"].font=Font(bold=True,color=WHITE); ws[f"{c}{it+2}"].fill=fill("B8650F")
 ws.conditional_formatting.add(f"E{idx0}:E{it-1}",DataBarRule(start_type="num",start_value=0,end_type="max",color="F2B36A",showValue=True))
 ws.freeze_panes="A3"
 for w_ in (wi,wc):

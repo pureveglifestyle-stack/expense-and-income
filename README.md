@@ -3,7 +3,7 @@
 Rajesh's personal income / spending / debt analysis, Aug 2025 – 19 Nov 2026. All amounts in AED.
 
 ## Latest workbook
-`output/Dubai_Money_Journey_2025-2026_v6.xlsx`
+`output/Dubai_Money_Journey_2025-2026_v7.xlsx`
 
 | Page | What it shows |
 |---|---|
@@ -40,5 +40,6 @@ Original statements are in `statements/` (most are password-protected; passwords
 
 ```
 cd work/xl
-python3 page34.py ../../output/Dubai_Money_Journey.xlsx   # needs openpyxl
+python3 page34.py /tmp/book.xlsx                                  # needs openpyxl
+python3 finalize.py /tmp/book.xlsx ../../output/Dubai_Money_Journey.xlsx   # stores calculated totals so phone viewers show them (needs LibreOffice)
 ```
