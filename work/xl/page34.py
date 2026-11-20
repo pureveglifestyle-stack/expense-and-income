@@ -74,8 +74,8 @@ CATS=[("Groceries",["Groceries"],0,"Need"),("Dining & food",["Dining & food"],0,
 ("Personal care & laundry",["Personal care & laundry"],0,"Need"),("Kids & leisure",["Kids & leisure"],0,"Reduce"),("Subscriptions & apps",["Subscriptions & apps"],0,"Reduce"),
 ("Tabby / BNPL",["Tabby / BNPL"],0,"Stop"),("Courier & services",["Courier & services"],0,"-"),("Other purchases",["Other purchases"],0,"-"),("Cashback & offers (credit)",["Cashback & offers"],0,"-"),
 ("Rent",["Rent cheques (RAK)","Rent cheque (ENBD)"],0,"Need"),("Transfers to people",["Transfers to other people / accounts"],0,"Check"),
-("Paid to FAB & RAK cards",["FAB card","RAK credit card"],0,"Debt"),("Cash withdrawn (UAE ATM)",["ATM – RAK","ATM – ENBD (UAE)"],0,"Reduce"),
-("Bank charges & interest",["RAK account fees","ENBD account charges","ENBD transfer charges","SNB fees","ENBD card interest & fees","Emirates Islamic profit & fees"],0,"Stop"),
+("Cash withdrawn (UAE ATM)",["ATM – RAK","ATM – ENBD (UAE)","Cash from credit card"],0,"Reduce"),
+("Bank charges & interest",["RAK account fees","ENBD account charges","ENBD transfer charges","SNB fees","ENBD card interest & fees","Emirates Islamic profit & fees","FAB card fees & insurance","RAKBANK card interest & fees"],0,"Stop"),
 ("WORK TRAVEL – Travel & hotels",["Travel & hotels"],0,"Envision"),("WORK TRAVEL – Saudi purchases",["Saudi purchases (ENBD card)","Saudi purchases (SNB)","Saudi purchases (credit card)"],0,"Envision"),("WORK TRAVEL – Saudi ATM cash",["ATM – ENBD (Saudi)","ATM – SNB (Saudi)"],0,"Envision")]
 NC={"Need":"1D6B3A","Cut":RED,"Reduce":"B8650F","Stop":RED,"Envision":"20A39E","-":"5B6475","Check":"5B6475","Debt":RED}
 # index

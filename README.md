@@ -3,7 +3,7 @@
 Rajesh's personal income / spending / debt analysis, Aug 2025 – 19 Nov 2026. All amounts in AED.
 
 ## Latest workbook
-`output/Dubai_Money_Journey_2025-2026_v5.xlsx`
+`output/Dubai_Money_Journey_2025-2026_v6.xlsx`
 
 | Page | What it shows |
 |---|---|
@@ -17,9 +17,9 @@ Rajesh's personal income / spending / debt analysis, Aug 2025 – 19 Nov 2026. A
 |---|---|
 | Total income | 333,598.83 (salary 310,700.47 + Envision travel allowance 22,898.36) |
 | Sent to India | 162,626.46 |
-| Total money out | 498,097.25 |
-| Work travel (Envision allowance) | 42,697.97 vs allowance 22,898.36 |
-| Debt on 19 Nov 2026 | 117,660 (ENBD 46,867 · Emirates Islamic 44,614 · Tabby 10,000 · FAB 9,890 · RAK 6,289) |
+| Total money out | 495,695.74 (FAB & RAKBANK card purchases now itemised, card bill payments no longer counted) |
+| Work travel (Envision allowance) | 44,647.59 vs allowance 22,898.36 |
+| Debt on 19 Nov 2026 | 117,660 (ENBD 46,867 · Emirates Islamic 44,614 · Tabby 10,000 · FAB 9,890 · RAK 6,289) **+ RAKBANK card-cheque loan 8,274.03** (12 months from 4 Nov 2026, 779.07/month) – to confirm if the 6,289 already includes it |
 
 ## Rules agreed with Rajesh
 - Only credits labelled *Salary* from Envision count as Envision income (plus the 16 Apr 5,000 advance).
@@ -30,13 +30,13 @@ Rajesh's personal income / spending / debt analysis, Aug 2025 – 19 Nov 2026. A
 - Always ask Rajesh for passwords of locked statements (never stored in this repo).
 
 ## Still to do
-1. FAB credit card statements (2) – waiting for password.
-2. RAKBANK credit card statements (6) – waiting for password.
+1. ~~FAB & RAKBANK credit card statements~~ – done (v6).
+2. Confirm RAK debt: does 6,288.66 include the 8,274.03 card-cheque instalment?
 3. Page 5: Debts & payoff plan (10-month goal).
 4. Open questions: Rajeswaran Subramanian 6,763.03 (May 2026); Envision-period cash deposits 5,700 / 3,250 / 19,500.
 
 ## Rebuild
-Original statements and their extracted text are NOT in this repo (they hold account numbers). The cleaned transaction data is in `work/*.json`.
+Original statements are in `statements/` (most are password-protected; passwords are never stored here). The cleaned transaction data is in `work/*.json`; card parsers are in `work/py/` (`rakcc.py`, `fab.py`).
 
 ```
 cd work/xl

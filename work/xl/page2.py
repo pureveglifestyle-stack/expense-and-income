@@ -9,18 +9,18 @@ ws.sheet_view.showGridLines=False; ws.sheet_properties.tabColor="B42318"
 widths=[2,24,16,16,15,15,15,14,14,14,14,15,2]
 for i,w in enumerate(widths): ws.column_dimensions["ABCDEFGHIJKLM"[i]].width=w
 RED="B42318"
-GC={"Work travel (Envision allowance)":"1D6B3A","Sent to India":"2F6DB5","Housing":"7B4FC9","Credit card purchases":"D9822B","Debit card purchases":"E0B21E","Paid to other credit cards":"C2410C","Transfers to people":"20A39E","Cash withdrawn":"6B7280","Bank charges":"B42318"}
-GP={"Work travel (Envision allowance)":"DDF1E4","Sent to India":"DCE8F7","Housing":"E9E1F7","Credit card purchases":"FCE9D2","Debit card purchases":"FBF3D0","Paid to other credit cards":"FDE3D3","Transfers to people":"D6F2F0","Cash withdrawn":"ECEEF1","Bank charges":"FBE0DD"}
+GC={"Work travel (Envision allowance)":"1D6B3A","Sent to India":"2F6DB5","Housing":"7B4FC9","Credit card purchases":"D9822B","Debit card purchases":"E0B21E","FAB & RAK card purchases":"C2410C","Transfers to people":"20A39E","Cash withdrawn":"6B7280","Bank charges":"B42318"}
+GP={"Work travel (Envision allowance)":"DDF1E4","Sent to India":"DCE8F7","Housing":"E9E1F7","Credit card purchases":"FCE9D2","Debit card purchases":"FBF3D0","FAB & RAK card purchases":"FDE3D3","Transfers to people":"D6F2F0","Cash withdrawn":"ECEEF1","Bank charges":"FBE0DD"}
 ws.merge_cells("B1:L1"); ws["B1"]="MY DUBAI MONEY JOURNEY  ·  PAGE 2: MONEY OUT"
 ws["B1"].font=Font(bold=True,size=16,color=WHITE); ws["B1"].fill=fill("7A1C14"); ws["B1"].alignment=Alignment(vertical="center",indent=1); ws.row_dimensions[1].height=36
-ws.merge_cells("B2:L2"); ws["B2"]="30 Aug 2025 – 19 Nov 2026 · AED · RAK, ENBD & SNB accounts + ENBD credit card statements · money moved between your own accounts is NOT counted"
+ws.merge_cells("B2:L2"); ws["B2"]="30 Aug 2025 – 19 Nov 2026 · AED · RAK, ENBD & SNB accounts + ENBD, Emirates Islamic, FAB & RAKBANK card statements · money moved between your own accounts is NOT counted"
 ws["B2"].font=Font(italic=True,size=9,color="5B6475")
 # detail location
 N=len(ext); DH=120; df=DH+1; dl=df+N-1
 X=lambda c:f"${c}${df}:${c}${dl}"   # B date C account D group E sub F amount G desc
 def SG(g): return f'SUMIFS({X("F")},{X("D")},"{g}")'
-groups=["Sent to India","Housing","Credit card purchases","Debit card purchases","Paid to other credit cards","Transfers to people","Cash withdrawn","Bank charges","Work travel (Envision allowance)"]
-gdesc={"Sent to India":"38 transfers to Sornapriya (ENBD + RAK)","Housing":"Rent cheques (RAK 7, ENBD 1)","Credit card purchases":"Every purchase on ENBD + Emirates Islamic cards (excl. travel)","Debit card purchases":"RAK & ENBD debit cards in UAE, incl. Tabby","Paid to other credit cards":"FAB & RAK card bills (statements still locked)","Transfers to people":"Workers, friends, other accounts","Cash withdrawn":"ATM cash in UAE","Bank charges":"Card interest, cash-advance & instalment fees, account fees","Work travel (Envision allowance)":"Travel, hotels, Saudi purchases & Saudi ATM cash"}
+groups=["Sent to India","Housing","Credit card purchases","Debit card purchases","FAB & RAK card purchases","Transfers to people","Cash withdrawn","Bank charges","Work travel (Envision allowance)"]
+gdesc={"Sent to India":"38 transfers to Sornapriya (ENBD + RAK)","Housing":"Rent cheques (RAK 7, ENBD 1)","Credit card purchases":"Every purchase on ENBD + Emirates Islamic cards (excl. travel)","Debit card purchases":"RAK & ENBD debit cards in UAE, incl. Tabby","FAB & RAK card purchases":"Every purchase on FAB & RAKBANK cards (statements unlocked)","Transfers to people":"Workers, friends, other accounts","Cash withdrawn":"ATM cash in UAE","Bank charges":"Card interest, card fees & insurance, account fees","Work travel (Envision allowance)":"Travel, hotels, Saudi purchases & Saudi ATM cash"}
 # tiles
 spent_f="=C10+C11+C12+C13+C14"
 tiles=[("B","C","TOTAL MONEY OUT","=C18",RED,"FBE6E4","all money that left you"),
@@ -70,14 +70,14 @@ abox=[("Envision travel allowance","='1. Income'!F5","1D6B3A"),("Work travel spe
 for i,(l,fx,col) in enumerate(abox):
     r=21+i; ws.merge_cells(f"D{r}:E{r}"); ws[f"D{r}"]=l; ws[f"F{r}"]=fx; ws[f"F{r}"].number_format="#,##0.00;[Red]-#,##0.00"; ws[f"D{r}"].font=Font(bold=True,color=col); ws[f"F{r}"].font=Font(bold=True,color=col,size=12)
     for c in "DEF": ws[f"{c}{r}"].border=Border(bottom=thin)
-ws["B24"]="The gap was covered by credit cards (debt today ≈ 117,660), card cash advances, Rajeswaran's 6,763 and Envision-period cash deposits (28,450)."
+ws["B24"]="The gap was covered by credit cards (debt today ≈ 117,660 + 8,274 RAKBANK card-cheque loan), card cash advances, Rajeswaran's 6,763 and Envision-period cash deposits (28,450)."
 ws["B24"].font=Font(italic=True,size=9,color="5B6475")
 # category table
 ws["B27"]="WHAT YOU BOUGHT (credit + debit cards)"; ws["B27"].font=Font(bold=True,size=12,color=NAVY)
 hdr(28,"BCDEF",["Category","Credit cards","Debit cards","Total","Need / Cut?"])
 cats=[("Groceries",["Groceries"],"Need"),("Shopping, electronics & home",["Shopping & home"],"Cut"),("Education (DBA / courses)",["Education"],"Check"),("Telecom, DEWA & bills",["Telecom & bills"],"Need"),("Dining & food",["Dining & food"],"Cut"),("Taxi & transport",["Taxi & transport"],"Reduce"),("Tabby / BNPL",["Tabby / BNPL"],"Stop"),("Health, pharmacy & nutrition",["Health & pharmacy"],"Need"),("Personal care & laundry",["Personal care & laundry"],"Need"),("Kids & leisure",["Kids & leisure"],"Reduce"),("Subscriptions & apps",["Subscriptions & apps"],"Reduce"),("Courier & services",["Courier & services"],"-"),("Other",["Other purchases"],"-"),("Cashback & offers",["Cashback & offers"],"-"),("Travel & hotels (work)",["Travel & hotels"],"Envision"),("Saudi purchases (work)",["Saudi purchases (SNB)","Saudi purchases (ENBD card)","Saudi purchases (credit card)"],"Envision")]
 NC={"Need":"1D6B3A","Cut":RED,"Reduce":"B8650F","Stop":RED,"Envision":"20A39E","-":"5B6475","Check":"5B6475"}
-CCA=["ENBD credit card","Emirates Islamic card"]
+CCA=["ENBD credit card","Emirates Islamic card","FAB credit card","RAKBANK credit card"]
 for i,(cn,subs,flag) in enumerate(cats):
     r=29+i; ws[f"B{r}"]=cn
     ws[f"C{r}"]="="+"+".join(f'SUMIFS({X("F")},{X("E")},"{s_}",{X("C")},"{a_}")' for s_ in subs for a_ in CCA)
