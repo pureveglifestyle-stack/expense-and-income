@@ -10,3 +10,4 @@ work/xl/*.xlsx
 
 # original statements are kept on purpose in statements/ (private repo, owner's choice)
 !statements/**
+__pycache__/
