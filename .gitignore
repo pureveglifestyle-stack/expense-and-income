@@ -7,3 +7,6 @@
 work/xl/pdf/
 work/xl/lo/
 work/xl/*.xlsx
+
+# original statements are kept on purpose in statements/ (private repo, owner's choice)
+!statements/**
